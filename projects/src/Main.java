@@ -9,6 +9,8 @@ public class Main {
         //new adminWorkSpace("adm","lianjun");
 
         /*User user = null;
+        //s
+        //sstest
 
         user.UserLogin();*/
         new loginScreen();//main entry
