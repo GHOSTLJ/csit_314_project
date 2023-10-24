@@ -70,25 +70,14 @@ public class loginScreen {
                  *  defined by the static method in entity_layer to create the specific user type (admin,owner,manager,staff).
                  */
                 UserController user = new UserController();
-                //Call static methods to access database, the entity layer method will check account and password then return a User type to define user.
-                // = LoginVerification.LoginVerify(username,password);
-                //user.UserLogin(username,password);
 
                 if (!user.UserLogin(username,password)){
                     JOptionPane.showMessageDialog(frame, "Invalid Account or Password or the account has been disabled. please contact administrator");
                 }else {
-                    //new userWorkSpace("name","profile");
-                    //user.UserLogin(); //Calls the current user's work panel,UserLogin() be rewritten in each role's class
+
                     frame.dispose(); // Close login screen
                 };
 
-                /*if (user.getProfile().equals("Invalid Account or Password or the account has been disabled. please contact administrator")){
-                    JOptionPane.showMessageDialog(frame, "Invalid Account or Password or the account has been disabled. please contact administrator");
-                }else {
-                    new userWorkSpace("name","profile");
-                    user.UserLogin(); //Calls the current user's work panel,UserLogin() be rewritten in each role's class
-                    frame.dispose(); // Close login screen
-                };*/
             }
         });
 

@@ -339,8 +339,9 @@ public class adminWorkSpace extends JFrame {
                         JOptionPane.OK_CANCEL_OPTION
                 );
                 if (confirmationResult == JOptionPane.OK_OPTION) {
-                    dispose();
-                    new loginScreen();
+                    logOut();
+                    /*dispose();
+                    new loginScreen();*/
                 } else {
                     // User clicked Cancel, do nothing or provide appropriate action
                 }
@@ -411,6 +412,12 @@ public class adminWorkSpace extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true); // Set frame visibility after adding components
+    }
+
+
+    public void logOut(){
+        dispose();
+        new loginScreen();
     }
 
 }
