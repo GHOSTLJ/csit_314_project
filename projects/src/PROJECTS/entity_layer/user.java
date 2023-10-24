@@ -2,6 +2,7 @@ package PROJECTS.entity_layer;
 
 import PROJECTS.boundary_layer.adminWorkSpace;
 
+import PROJECTS.boundary_layer.ownerWorkSpace;
 import PROJECTS.control_layer.systemAdmin.*;
 import PROJECTS.util.DButil;
 
@@ -31,15 +32,16 @@ public class user {
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()&&resultSet.getBoolean("status")){
 
-                if (resultSet.getString("description").equals("Administrator")){
+                if (resultSet.getInt("t_u_pro_no")==1){
                     new adminWorkSpace(resultSet.getString("name"),resultSet.getString("description"));
                     return true;
 
-                } else if (resultSet.getString("description").equals("cafe owner")) {
+                } else if (resultSet.getInt("t_u_pro_no")==2) {
+                    new ownerWorkSpace();
+                    return true;
+                } else if (resultSet.getInt("t_u_pro_no")==3) {
 
-                } else if (resultSet.getString("description").equals("manager")) {
-
-                } else if (resultSet.getString("description").equals("staff")) {
+                } else if (resultSet.getInt("t_u_pro_no")==4) {
 
                 }
             }else {
