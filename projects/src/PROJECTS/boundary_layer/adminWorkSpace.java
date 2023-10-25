@@ -16,8 +16,8 @@ import java.util.Vector;
 
 
 public class adminWorkSpace extends JFrame {
-    public adminWorkSpace(String name, String profile) {
-        super("Welcome "+profile+" : "+name+" to use Admin workspace");
+    public adminWorkSpace(String name ) {
+        super("Welcome "+name+" : "+" to use Admin workspace");
         JTabbedPane controlTab;
         JPanel viewPart, addPart, searchPart, updatePart, suspendPart, exitPart;
 
