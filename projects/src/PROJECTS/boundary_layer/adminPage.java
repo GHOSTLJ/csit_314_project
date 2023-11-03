@@ -2,21 +2,17 @@ package PROJECTS.boundary_layer;
 
 import PROJECTS.control_layer.systemAdmin.*;
 
-import PROJECTS.entity_layer.userAccount;
-
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.Vector;
 
 
-public class adminWorkSpace extends JFrame {
-    public adminWorkSpace(String name ) {
+public class adminPage extends JFrame {
+    public adminPage(String name ) {
         super("Welcome "+name+" : "+" to use Admin workspace");
         JTabbedPane controlTab;
         JPanel viewPart, addPart, searchPart, updatePart, suspendPart, exitPart;
@@ -119,9 +115,9 @@ public class adminWorkSpace extends JFrame {
 
                 adminAddController user = new adminAddController();
                 if (user.addVerification(account,password,name,profile)){
-                    JOptionPane.showMessageDialog(adminWorkSpace.this, "The new user has been successfully added to the database");
+                    JOptionPane.showMessageDialog(adminPage.this, "The new user has been successfully added to the database");
                 }else {
-                    JOptionPane.showMessageDialog(adminWorkSpace.this,
+                    JOptionPane.showMessageDialog(adminPage.this,
                             "Your input is not valid, please re-enter, (account characters must not be less than 4," +
                                     " password must not be less than 6, " +
                             "name must not be empty, profile input please follow (1,2,3,4))");
@@ -239,7 +235,7 @@ public class adminWorkSpace extends JFrame {
                 adminUpdateController user = new adminUpdateController();
 
                 int confirmationResult = JOptionPane.showConfirmDialog(
-                        adminWorkSpace.this,
+                        adminPage.this,
                         "Are you sure you want to update the user?",
                         "Confirmation",
                         JOptionPane.OK_CANCEL_OPTION
@@ -247,9 +243,9 @@ public class adminWorkSpace extends JFrame {
 
                 if (confirmationResult == JOptionPane.OK_OPTION) {
                     if (user.updateVerification(account, password, name, profile)) {
-                        JOptionPane.showMessageDialog(adminWorkSpace.this, "The new user has been successfully updated to the database");
+                        JOptionPane.showMessageDialog(adminPage.this, "The new user has been successfully updated to the database");
                     } else {
-                        JOptionPane.showMessageDialog(adminWorkSpace.this,
+                        JOptionPane.showMessageDialog(adminPage.this,
                                 "Your input is not valid, please re-enter, (account characters must not be less than 4," +
                                         " password must not be less than 6, " +
                                         "name must not be empty, profile input please follow (1,2,3,4))");
@@ -286,7 +282,7 @@ public class adminWorkSpace extends JFrame {
 
 
                 int confirmationResult = JOptionPane.showConfirmDialog(
-                        adminWorkSpace.this,
+                        adminPage.this,
                         "Are you sure you want to suspend this user? This user will not be able to log in",
                         "Confirmation",
                         JOptionPane.OK_CANCEL_OPTION
@@ -295,9 +291,9 @@ public class adminWorkSpace extends JFrame {
                     adminSuspendController user = new adminSuspendController();
                     boolean suspendSuccess = user.suspendAccount(account);
                     if (suspendSuccess) {
-                        JOptionPane.showMessageDialog(adminWorkSpace.this, "The user has been successfully suspended");
+                        JOptionPane.showMessageDialog(adminPage.this, "The user has been successfully suspended");
                     } else {
-                        JOptionPane.showMessageDialog(adminWorkSpace.this,
+                        JOptionPane.showMessageDialog(adminPage.this,
                                 "Your input is not valid, or this user account has been deactivated" );
                     }
                 } else {
@@ -333,7 +329,7 @@ public class adminWorkSpace extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int confirmationResult = JOptionPane.showConfirmDialog(
-                        adminWorkSpace.this,
+                        adminPage.this,
                         "Are you sure you want log out ?",
                         "Confirmation",
                         JOptionPane.OK_CANCEL_OPTION

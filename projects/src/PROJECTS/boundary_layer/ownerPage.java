@@ -1,8 +1,6 @@
 package PROJECTS.boundary_layer;
 
 import PROJECTS.control_layer.cafeOwner.*;
-import PROJECTS.control_layer.systemAdmin.adminSuspendController;
-import PROJECTS.entity_layer.workSlots;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -15,8 +13,8 @@ import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class ownerWorkSpace extends JFrame {
-    public ownerWorkSpace(String name) {
+public class ownerPage extends JFrame {
+    public ownerPage(String name) {
         super("Welcome "+name+" : "+" to use cafe owner workspace");
         JTabbedPane controlTab;
         JPanel viewPart, addPart, searchPart,updatePart,deletePart,exitPart;	//定义面板
@@ -106,9 +104,9 @@ public class ownerWorkSpace extends JFrame {
  * call add controller
  */
             if (ownerAddController.addVerification(slotAddInfo)){
-                JOptionPane.showMessageDialog(ownerWorkSpace.this, "The new slot has been successfully added to the database");
+                JOptionPane.showMessageDialog(ownerPage.this, "The new slot has been successfully added to the database");
             }else {
-                JOptionPane.showMessageDialog(ownerWorkSpace.this,
+                JOptionPane.showMessageDialog(ownerPage.this,
                         "Your input time is not valid, please re-select, (can not less then 1 hour or higher then 8 hours ");
             }
 
@@ -326,9 +324,9 @@ public class ownerWorkSpace extends JFrame {
  * call update controller
  */
             if (ownerUpdateController.updateSlot(slotUpdateInfo)){
-                JOptionPane.showMessageDialog(ownerWorkSpace.this, "The slot has been successfully updated to the database");
+                JOptionPane.showMessageDialog(ownerPage.this, "The slot has been successfully updated to the database");
             }else {
-                JOptionPane.showMessageDialog(ownerWorkSpace.this,
+                JOptionPane.showMessageDialog(ownerPage.this,
                         "The slot is not exist or Your input time is not valid, please re-select, (can not less then 1 hour or higher then 8 hours) ");
             }
         });
@@ -404,7 +402,7 @@ public class ownerWorkSpace extends JFrame {
 
 
                 int confirmationResult = JOptionPane.showConfirmDialog(
-                        ownerWorkSpace.this,
+                        ownerPage.this,
                         "Are you sure you want to suspend this slot? This user will not be show ",
                         "Confirmation",
                         JOptionPane.OK_CANCEL_OPTION
@@ -416,9 +414,9 @@ public class ownerWorkSpace extends JFrame {
  */
                     boolean suspendSuccess = ownerSuspendController.suspendSlot(SlotNo);
                     if (suspendSuccess) {
-                        JOptionPane.showMessageDialog(ownerWorkSpace.this, "The slot has been successfully suspended");
+                        JOptionPane.showMessageDialog(ownerPage.this, "The slot has been successfully suspended");
                     } else {
-                        JOptionPane.showMessageDialog(ownerWorkSpace.this,
+                        JOptionPane.showMessageDialog(ownerPage.this,
                                 "Your input is not exist, or this slot has been suspended" );
                     }
                 } else {
@@ -446,7 +444,7 @@ public class ownerWorkSpace extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int confirmationResult = JOptionPane.showConfirmDialog(
-                        ownerWorkSpace.this,
+                        ownerPage.this,
                         "Are you sure you want log out ?",
                         "Confirmation",
                         JOptionPane.OK_CANCEL_OPTION

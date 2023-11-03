@@ -1,8 +1,10 @@
 package PROJECTS.entity_layer;
 
-import PROJECTS.boundary_layer.adminWorkSpace;
+import PROJECTS.boundary_layer.adminPage;
 
-import PROJECTS.boundary_layer.ownerWorkSpace;
+
+import PROJECTS.boundary_layer.ownerPage;
+
 import PROJECTS.control_layer.systemAdmin.*;
 import PROJECTS.util.DButil;
 
@@ -31,11 +33,11 @@ public class user {
             if (resultSet.next()&&resultSet.getBoolean("status")){
 
                 if (resultSet.getInt("t_u_pro_no")==1){
-                    new adminWorkSpace(resultSet.getString("name"));
+                    new adminPage(resultSet.getString("name"));
                     return true;
 
                 } else if (resultSet.getInt("t_u_pro_no")==2) {
-                    new ownerWorkSpace(resultSet.getString("name"));
+                    new ownerPage(resultSet.getString("name"));
                     return true;
                 } else if (resultSet.getInt("t_u_pro_no")==3) {
 
