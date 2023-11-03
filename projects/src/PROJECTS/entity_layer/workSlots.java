@@ -205,4 +205,46 @@ public class workSlots {
         }
         return false;
     }
+
+    /**
+     * for cafe owner to view table in suspend page
+     * @return if found data then return a DefaultTableModel(table contain information)
+     */
+    public DefaultTableModel viewSuspend(){
+        DefaultTableModel myModel = new DefaultTableModel();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DButil.getConnection();
+            String sql = "select slot_id,start_time ,end_time,hour_duration, chef_need,cashier_need,waiter_need from t_work_slot WHERE status = true;";
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+
+            // Define column names for the table model
+            String[] columnNames = {"Slot No", "start time", "end time", "hours","chef need","cashier need","waiter need"};
+            myModel.setColumnIdentifiers(columnNames);
+            // Iterate through the result set and add data to the table model
+            while (resultSet.next()) {
+                String slotNo = resultSet.getString("slot_id");
+                String startTime = resultSet.getString("start_time");
+                String endTime = resultSet.getString("end_time");
+                String hours = resultSet.getString("hour_duration");
+                String chefNeed = resultSet.getString("chef_need");
+                String cashierNeed = resultSet.getString("cashier_need");
+                String waiterNeed = resultSet.getString("waiter_need");
+
+                // Add fetched data to the table model
+                Object[] rowData = {slotNo, startTime, endTime, hours, chefNeed, cashierNeed, waiterNeed};
+                myModel.addRow(rowData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle exceptions
+        }finally {
+            DButil.clos(connection,preparedStatement,resultSet);
+        }
+        return myModel;
+    }
 }

@@ -7,8 +7,8 @@ import java.util.Map;
 
 
 
-public class adminAddController {
-    public boolean addVerification(String account, String password, String name, String profile) {
+public class adminUpdateUserController {
+    public boolean updateVerification(String account, String password, String name, String profile){
         // Check account, password, and name length requirements
         if (account.length() < 4 || password.length() < 6 || name.isEmpty()) {
             return false; // Return false if any of the conditions are not met
@@ -26,13 +26,12 @@ public class adminAddController {
         }
 
         // If all conditions are met, return true
-        Map<String, String> userAddInfo = new HashMap<>();
-        userAddInfo.put("account",account);
-        userAddInfo.put("password",password);
-        userAddInfo.put("name",name);
-        userAddInfo.put("profile",profile);
-
+        Map<String, String> userUpdateInfo = new HashMap<>();
+        userUpdateInfo.put("account",account);
+        userUpdateInfo.put("password",password);
+        userUpdateInfo.put("name",name);
+        userUpdateInfo.put("profile",profile);
         userAccount userAccount = new userAccount();
-        return userAccount.addUserToDatabase(userAddInfo);//connect to entity layer;
+        return userAccount.updateUserToDatabase(userUpdateInfo);//connect to entity layer;
     }
 }

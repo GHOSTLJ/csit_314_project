@@ -4,7 +4,17 @@ import PROJECTS.entity_layer.userAccount;
 
 import javax.swing.table.DefaultTableModel;
 
-public class adminViewController {
+
+public class adminSuspendUserController {
+    public boolean suspendAccount(String account){
+        if (account.length() < 4){
+            return false;
+        }else {
+            userAccount userAccount = new userAccount();
+            return (userAccount.suspendAccountToDatabase(account));
+        }
+    }
+
     public DefaultTableModel viewAllUserList(){
         userAccount userAccount = new userAccount();
         DefaultTableModel myModel = userAccount.viewFromDatabase();
@@ -14,7 +24,6 @@ public class adminViewController {
         userAccount userAccount = new userAccount();
         return userAccount.refreshFromDataBase();
     }
+
+
 }
-
-
-

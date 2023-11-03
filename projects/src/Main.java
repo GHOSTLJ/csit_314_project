@@ -6,14 +6,14 @@ import PROJECTS.control_layer.*;
 //import project.entity_layer.*;
 public class Main {
     public static void main(String[] args) {
-        //new adminWorkSpace("adm","lianjun");
+        new adminPage("adm");
 
         /*User user = null;
         //s
         //sstest
 
         user.UserLogin();*/
-        new loginPage();//main entry
-        //new ownerWorkSpace();
+        //new loginPage();//main entry
+        //new ownerPage("22");
     }
 }

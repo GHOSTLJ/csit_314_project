@@ -1,6 +1,7 @@
 package PROJECTS.boundary_layer;
 
 import PROJECTS.control_layer.cafeOwner.*;
+import PROJECTS.control_layer.systemAdmin.adminSuspendUserController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -395,6 +396,7 @@ public class ownerPage extends JFrame {
         //JTextField suspendAccountField=new JTextField(15);
         JButton suspendButton=new JButton("Suspend");
 
+
         suspendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -424,14 +426,60 @@ public class ownerPage extends JFrame {
                 }
             }
         });
+
+
+
+
+
+
+        ownerSuspendController ownerSuspendController = new ownerSuspendController();
+
+        DefaultTableModel suspendModel = ownerSuspendController.viewAllSlots();
+        JTable suspendTable = new JTable(suspendModel);
+        suspendTable.setPreferredScrollableViewportSize(new Dimension(400, 500));
+        JScrollPane suspendScrollPane = new JScrollPane(suspendTable);
+        suspendTable.setRowHeight(20);
+        JButton suspendRefreshButton=new JButton("refresh");
+        refreshButton.setBounds(210, 10, 80, 25);
+        suspendRefreshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ownerSuspendController ownerSuspendController = new ownerSuspendController();
+
+                DefaultTableModel updatedModel = ownerSuspendController.refreshAllSlots();
+                //?
+                suspendModel.setRowCount(0);
+                for (int i = 0; i < updatedModel.getRowCount(); i++) {
+                    Vector<Object> row = new Vector<>();
+                    for (int j = 0; j < updatedModel.getColumnCount(); j++) {
+                        row.add(updatedModel.getValueAt(i, j));
+                    }
+                    suspendModel.addRow(row);
+                }
+            }
+        });
+
+
+
+
+
+
+
+
+
         suspendAccountLabel.setBounds(30, 60, 350, 30);
         deleteIntegerField.setBounds(50, 110, 250, 30);
         suspendButton.setBounds(370, 110, 100, 30);
+
+        suspendScrollPane.setBounds(50, 150, 450, 250);
+        suspendRefreshButton.setBounds(200, 410, 100, 30);
 
 
         deletePart.add(suspendAccountLabel);
         deletePart.add(deleteIntegerField);
         deletePart.add(suspendButton);
+        deletePart.add(suspendScrollPane);
+        deletePart.add(suspendRefreshButton);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
         /**

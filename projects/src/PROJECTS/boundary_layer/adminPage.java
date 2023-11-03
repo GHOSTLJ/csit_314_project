@@ -29,7 +29,7 @@ public class adminPage extends JFrame {
          * view user part
          *
          */
-        adminViewController adminViewController = new adminViewController();
+        adminViewUserController adminViewController = new adminViewUserController();
 
         DefaultTableModel myModel = adminViewController.viewAllUserList();
         JTable table = new JTable(myModel);
@@ -41,7 +41,7 @@ public class adminPage extends JFrame {
         refreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                adminViewController adminViewController = new adminViewController();
+                adminViewUserController adminViewController = new adminViewUserController();
                 DefaultTableModel updatedModel = adminViewController.refreshAllUserList();
                 //?
                 myModel.setRowCount(0);
@@ -113,7 +113,7 @@ public class adminPage extends JFrame {
                 String profile = addProfileNoField.getText();
 
 
-                adminAddController user = new adminAddController();
+                adminAddUserController user = new adminAddUserController();
                 if (user.addVerification(account,password,name,profile)){
                     JOptionPane.showMessageDialog(adminPage.this, "The new user has been successfully added to the database");
                 }else {
@@ -163,7 +163,7 @@ public class adminPage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String account = searchAccountField.getText();
-                adminSearchController user = new adminSearchController();
+                adminSearchUserController user = new adminSearchUserController();
 
                 // Add the new row to the searchModel
                 searchModel.setRowCount(0);
@@ -232,7 +232,7 @@ public class adminPage extends JFrame {
                 String name = updateNameField.getText();
                 String profile = updateProfileNoField.getText();
 
-                adminUpdateController user = new adminUpdateController();
+                adminUpdateUserController user = new adminUpdateUserController();
 
                 int confirmationResult = JOptionPane.showConfirmDialog(
                         adminPage.this,
@@ -275,6 +275,41 @@ public class adminPage extends JFrame {
         JTextField suspendAccountField=new JTextField(15);
         JButton suspendButton=new JButton("Suspend");
 
+        adminSuspendUserController adminSuspendController = new adminSuspendUserController();
+
+        DefaultTableModel suspendModel = adminSuspendController.viewAllUserList();
+        JTable suspendTable = new JTable(suspendModel);
+        suspendTable.setPreferredScrollableViewportSize(new Dimension(400, 500));
+        JScrollPane suspendScrollPane = new JScrollPane(suspendTable);
+        suspendTable.setRowHeight(20);
+        JButton suspendRefreshButton=new JButton("refresh");
+        refreshButton.setBounds(210, 10, 80, 25);
+        suspendRefreshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adminSuspendUserController adminSuspendController = new adminSuspendUserController();
+                DefaultTableModel updatedModel = adminSuspendController.refreshAllUserList();
+                //?
+                suspendModel.setRowCount(0);
+                for (int i = 0; i < updatedModel.getRowCount(); i++) {
+                    Vector<Object> row = new Vector<>();
+                    for (int j = 0; j < updatedModel.getColumnCount(); j++) {
+                        row.add(updatedModel.getValueAt(i, j));
+                    }
+                    suspendModel.addRow(row);
+                }
+            }
+        });
+
+
+
+
+
+
+
+
+
+
         suspendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -288,7 +323,7 @@ public class adminPage extends JFrame {
                         JOptionPane.OK_CANCEL_OPTION
                 );
                 if (confirmationResult == JOptionPane.OK_OPTION) {
-                    adminSuspendController user = new adminSuspendController();
+                    adminSuspendUserController user = new adminSuspendUserController();
                     boolean suspendSuccess = user.suspendAccount(account);
                     if (suspendSuccess) {
                         JOptionPane.showMessageDialog(adminPage.this, "The user has been successfully suspended");
@@ -301,11 +336,13 @@ public class adminPage extends JFrame {
                 }
             }
         });
+
         suspendAccountLabel.setBounds(30, 60, 350, 30);
         suspendAccountField.setBounds(50, 110, 250, 30);
         suspendButton.setBounds(370, 110, 100, 30);
 
-
+        suspendScrollPane.setBounds(50, 150, 450, 250);
+        suspendRefreshButton.setBounds(200, 410, 100, 30);
         ///////////////////////////////////////////////////////////////////////////////////////////////////
         viewPart.setBackground(Color.PINK);
         addPart.setBackground(Color.PINK);
@@ -392,6 +429,8 @@ public class adminPage extends JFrame {
         suspendPart.add(suspendAccountLabel);
         suspendPart.add(suspendAccountField);
         suspendPart.add(suspendButton);
+        suspendPart.add(suspendScrollPane);
+        suspendPart.add(suspendRefreshButton);
 
 
         controlTab = new JTabbedPane(JTabbedPane.LEFT);

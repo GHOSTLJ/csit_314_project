@@ -6,7 +6,7 @@ import java.util.Vector;
 
 
 
-public class adminSearchController {
+public class adminSearchUserController {
 
     public Vector<String> searchUser(String account){
         Vector<String> newRowData = new Vector<>();

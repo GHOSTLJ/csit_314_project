@@ -29,7 +29,7 @@ public class userAccount extends user{
             resultSet = preparedStatement.executeQuery();
 
             // Define column names for the table model
-            String[] columnNames = {"Account", "Password", "Name", "Description","Status"};
+            String[] columnNames = {"Account", "Password", "Name", "Profile","Status"};
             myModel.setColumnIdentifiers(columnNames);
             // Iterate through the result set and add data to the table model
             while (resultSet.next()) {
