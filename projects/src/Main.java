@@ -13,7 +13,7 @@ public class Main {
         //sstest
 
         user.UserLogin();*/
-        new loginScreen();//main entry
+        new loginPage();//main entry
         //new ownerWorkSpace();
     }
 }

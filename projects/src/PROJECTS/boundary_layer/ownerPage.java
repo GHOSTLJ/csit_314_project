@@ -477,6 +477,6 @@ public class ownerPage extends JFrame {
     }
     public void logOut(){
         dispose();
-        new loginScreen();
+        new loginPage();
     }
 }

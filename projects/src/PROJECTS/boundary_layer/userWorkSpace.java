@@ -44,7 +44,7 @@ public class userWorkSpace extends JFrame{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     dispose(); // Close main screen
-                    new loginScreen(); // Open login screen again
+                    new loginPage(); // Open login screen again
                 }
             });
             exitPart.add(exitButton);

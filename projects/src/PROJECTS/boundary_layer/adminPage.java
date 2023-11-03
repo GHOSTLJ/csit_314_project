@@ -413,7 +413,7 @@ public class adminPage extends JFrame {
 
     public void logOut(){
         dispose();
-        new loginScreen();
+        new loginPage();
     }
 
 }

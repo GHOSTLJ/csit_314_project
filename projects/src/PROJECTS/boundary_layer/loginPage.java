@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class loginScreen {
+public class loginPage {
     JFrame frame =new JFrame("Cafe staff management system");
     Container c = frame.getContentPane();//创建视图
     JLabel userLabel=new JLabel(" Account :");
@@ -20,7 +20,7 @@ public class loginScreen {
     /**
      * This method is used to set the login screen
      */
-    public loginScreen(){
+    public loginPage(){
         frame.setBounds(600, 200, 350, 250);//设置窗体位置&大小
         c.setLayout(new BorderLayout());//设置视图的布局
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
