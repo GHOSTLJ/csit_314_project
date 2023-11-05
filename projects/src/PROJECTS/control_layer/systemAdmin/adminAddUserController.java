@@ -1,6 +1,7 @@
 package PROJECTS.control_layer.systemAdmin;
 
 import PROJECTS.entity_layer.userAccount;
+import PROJECTS.entity_layer.userProfile;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,17 +10,18 @@ import java.util.Map;
 
 public class adminAddUserController {
     public boolean addVerification(String account, String password, String name, String profile) {
+        userProfile userProfile = new userProfile();
         // Check account, password, and name length requirements
         if (account.length() < 4 || password.length() < 6 || name.isEmpty()) {
             return false; // Return false if any of the conditions are not met
         }
 
-        // Check profile value (1, 2, 3, or 4)
+        // Check profile value ( if input in  database can continue)
         int profileValue;
         try {
             profileValue = Integer.parseInt(profile);
-            if (profileValue < 1 || profileValue > 4) {
-                return false; // Return false if profile value is not within the allowed range
+            if (!userProfile.profileNoVerification(profileValue)) {
+                return false; // Return false if profile value is not within database
             }
         } catch (NumberFormatException e) {
             return false; // Return false if profile is not a valid integer

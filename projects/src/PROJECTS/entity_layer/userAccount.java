@@ -52,6 +52,10 @@ public class userAccount extends user{
         return myModel;
     }
 
+    /**
+     * for admin to refresh table
+     * @return DefaultTableModel(contain user account information)
+     */
     public DefaultTableModel refreshFromDataBase(){
         DefaultTableModel myModel = new DefaultTableModel();
 
@@ -130,7 +134,7 @@ public class userAccount extends user{
      * @param account account information
      * @return Returns a Vector containing user information including "Account No", "Password", "Name", "Description","Status"
      */
-    public Vector<String> searchUserFromDatabase(String account){
+    /*public Vector<String> searchUserFromDatabase(String account){
         Vector<String> newRowData = new Vector<>();
 
         Connection connection = null;
@@ -164,6 +168,51 @@ public class userAccount extends user{
         }
 
         return null;
+    }
+*/
+
+    /**
+     * This method is used by administrators to find users
+     * @param account account information
+     * @return Returns a DefaultTableModel containing user information including "Account No", "Password", "Name", "Description","Status"
+     */
+    public DefaultTableModel searchUserFromDatabase(String account){
+        DefaultTableModel myModel = new DefaultTableModel();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DButil.getConnection();
+            String sql = "SELECT * FROM t_user_account JOIN t_user_profile ON t_user_account.t_u_pro_no = t_user_profile.pro_no WHERE accountNo LIKE CONCAT('%', ?, '%')";
+            preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1,account);
+            resultSet = preparedStatement.executeQuery();
+
+            // Define column names for the table model
+            String[] columnNames = {"Account", "Password", "Name", "Description","Status"};
+            myModel.setColumnIdentifiers(columnNames);
+            // Iterate through the result set and add data to the table model
+            while (resultSet.next()) {
+
+
+                String accountNo=resultSet.getString("accountNo");
+                String password=resultSet.getString("password");
+                String name=resultSet.getString("name");
+                String description=resultSet.getString("description");
+                String status=resultSet.getBoolean("status")==true?"active":"inactive";
+
+                // Add fetched data to the table model
+                Object[] rowData = {accountNo,password, name,description,status};
+                myModel.addRow(rowData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle exceptions
+        } finally {
+            DButil.clos(connection, preparedStatement, resultSet);
+        }
+        return myModel;
     }
 
 
@@ -234,6 +283,39 @@ public class userAccount extends user{
             DButil.clos(connection, preparedStatement, resultSet);
 
         }
-        return false; //可以改到下面
+        return false;
+    }
+
+    /**
+     * for admin to activate an account
+     *
+     * @param account account
+     * @return if activate success return true
+     */
+    public boolean activateAccountToDatabase(String account){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DButil.getConnection();
+            String sql = "update t_user_account set status = true where accountNo =?;";
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, account);
+
+            //if add succeeds count will be 1
+            int count = preparedStatement.executeUpdate();
+
+            return count == 1;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+            DButil.clos(connection, preparedStatement, resultSet);
+
+        }
+        return false;
     }
 }

@@ -2,19 +2,19 @@ package PROJECTS.control_layer.systemAdmin;
 
 import PROJECTS.entity_layer.userAccount;
 
+import javax.swing.table.DefaultTableModel;
 import java.util.Vector;
 
 
 
 public class adminSearchUserController {
 
-    public Vector<String> searchUser(String account){
-        Vector<String> newRowData = new Vector<>();
-        if (account.length() < 4){
-            return null;
-        }else {
-            userAccount userAccount = new userAccount();
-            return (newRowData=userAccount.searchUserFromDatabase(account));
+    public DefaultTableModel searchUser(String account){
+        if (account.isEmpty()) {
+            return new DefaultTableModel();
         }
+        userAccount userAccount = new userAccount();
+        return userAccount.searchUserFromDatabase(account);
+
     }
 }
