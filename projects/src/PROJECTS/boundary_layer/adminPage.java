@@ -82,13 +82,21 @@ public class adminPage extends JFrame {
         addNameLabel.setFont(new Font(Font.SANS_SERIF,Font.BOLD,20));
         addProfileNoLabel.setFont(new Font(Font.SANS_SERIF,Font.BOLD,20));
 
-        ImageIcon scaledIcon = new ImageIcon(
+        /*ImageIcon scaledIcon = new ImageIcon(
                 new ImageIcon(getClass().getResource("/PROJECTS/image/questionMark.png"))
                         .getImage()
                         .getScaledInstance(30, 30, Image.SCALE_SMOOTH)
         );
         JLabel questionMarkLabel = new JLabel(scaledIcon);
-        questionMarkLabel.setToolTipText("<html>1. Administrator<br>2. Cafe owner<br>3. Manager<br>4. Staff</html>");
+        questionMarkLabel.setToolTipText("<html>1. Administrator<br>2. Cafe owner<br>3. Manager<br>4. Staff</html>");*/
+        adminAddUserController adminAddUserController = new adminAddUserController();
+        DefaultTableModel addUserProfileModel = adminAddUserController.viewProfileList();
+        JTable addUserProfileTable = new JTable(addUserProfileModel);
+        addUserProfileTable.setPreferredScrollableViewportSize(new Dimension(400, 500));
+        JScrollPane addUserProfileScrollPane = new JScrollPane(addUserProfileTable);
+        addUserProfileTable.setRowHeight(20);
+
+        addUserProfileScrollPane.setBounds(60, 230, 400, 200);
 
 
         JTextField addAccountField=new JTextField(15);
@@ -97,22 +105,27 @@ public class adminPage extends JFrame {
         JTextField addProfileNoField=new JTextField(15);
         JButton submitButton=new JButton("submit");
         JButton clearButton=new JButton("clear");
+        JButton addRefreshButton=new JButton("refresh");
 
 
-        addAccountLabel.setBounds(90, 100, 150, 30);
-        addPasswordLabel.setBounds(90, 130, 150, 30);
-        addNameLabel.setBounds(90, 160, 150, 30);
-        addProfileNoLabel.setBounds(90, 190, 150, 30);
+
+        addAccountLabel.setBounds(90, 60, 150, 30);
+        addPasswordLabel.setBounds(90, 90, 150, 30);
+        addNameLabel.setBounds(90, 120, 150, 30);
+        addProfileNoLabel.setBounds(90, 150, 150, 30);
         // Set the bounds for the question mark label
-        questionMarkLabel.setBounds(400, 190, 30, 30);
+        //questionMarkLabel.setBounds(400, 150, 30, 30);
+
+        addAccountField.setBounds(230, 60, 150, 25);
+        addPasswordField.setBounds(230, 90, 150, 25);
+        addNameField.setBounds(230, 120, 150, 25);
+        addProfileNoField.setBounds(230, 150, 150, 25);
+
+        clearButton.setBounds(150, 190, 80, 25);
+        submitButton.setBounds(250, 190, 80, 25);
+        addRefreshButton.setBounds(350, 190, 80, 25);
 
 
-        addAccountField.setBounds(230, 100, 150, 25);
-        addPasswordField.setBounds(230, 130, 150, 25);
-        addNameField.setBounds(230, 160, 150, 25);
-        addProfileNoField.setBounds(230, 190, 150, 25);
-
-        submitButton.setBounds(310, 270, 80, 25);
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -135,7 +148,7 @@ public class adminPage extends JFrame {
         });
 
 
-        clearButton.setBounds(210, 270, 80, 25);
+
         // Clear button
         clearButton.addActionListener(new ActionListener() {
             @Override
@@ -146,6 +159,24 @@ public class adminPage extends JFrame {
                 addProfileNoField.setText("");
             }
         });
+
+        addRefreshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adminUpdateUserController adminUpdateUserController = new adminUpdateUserController();
+                DefaultTableModel updatedModel = adminUpdateUserController.refreshProfileList();
+                //?
+                addUserProfileModel.setRowCount(0);
+                for (int i = 0; i < updatedModel.getRowCount(); i++) {
+                    Vector<Object> row = new Vector<>();
+                    for (int j = 0; j < updatedModel.getColumnCount(); j++) {
+                        row.add(updatedModel.getValueAt(i, j));
+                    }
+                    addUserProfileModel.addRow(row);
+                }
+            }
+        });
+
 
         //search part
         /**
@@ -204,13 +235,31 @@ public class adminPage extends JFrame {
         JLabel updateNameLabel=new JLabel("       Name :");
         JLabel updateProfileNoLabel=new JLabel("Profile No :");
 
-        ImageIcon updateScaledIcon = new ImageIcon(
+        /*ImageIcon updateScaledIcon = new ImageIcon(
                 new ImageIcon(getClass().getResource("/PROJECTS/image/questionMark.png"))
                         .getImage()
                         .getScaledInstance(30, 30, Image.SCALE_SMOOTH)
         );
         JLabel updateQuestionMarkLabel = new JLabel(updateScaledIcon);
-        updateQuestionMarkLabel.setToolTipText("<html>1. Administrator<br>2. Cafe owner<br>3. Manager<br>4. Staff</html>");
+        updateQuestionMarkLabel.setToolTipText("<html>1. Administrator<br>2. Cafe owner<br>3. Manager<br>4. Staff</html>");*/
+        adminUpdateUserController adminUpdateUserController = new adminUpdateUserController();
+        DefaultTableModel updateUserModel = adminUpdateUserController.viewAllUserList();
+        JTable updateUserTable = new JTable(updateUserModel);
+        updateUserTable.setPreferredScrollableViewportSize(new Dimension(400, 500));
+        JScrollPane updateUserTableScrollPane = new JScrollPane(updateUserTable);
+        updateUserTable.setRowHeight(20);
+        updateUserTableScrollPane.setBounds(30, 230, 250, 200);
+
+
+
+        DefaultTableModel updateUserProfileModel = adminUpdateUserController.viewProfileList();
+        JTable updateUserProfileTable = new JTable(updateUserProfileModel);
+        updateUserProfileTable.setPreferredScrollableViewportSize(new Dimension(400, 500));
+        JScrollPane updateUserProfileScrollPane = new JScrollPane(updateUserProfileTable);
+        updateUserProfileTable.setRowHeight(20);
+
+        updateUserProfileScrollPane.setBounds(300, 230, 200, 200);
+
 
         updateTitleLabel.setFont(new Font(Font.SANS_SERIF,Font.BOLD,25));
         updateAccountLabel.setFont(new Font(Font.SANS_SERIF,Font.BOLD,20));
@@ -223,22 +272,26 @@ public class adminPage extends JFrame {
         JTextField updateNameField=new JTextField(15);
         JTextField updateProfileNoField=new JTextField(15);
         // Set the bounds for the question mark label
-        updateQuestionMarkLabel.setBounds(400, 190, 30, 30);
+        //updateQuestionMarkLabel.setBounds(400, 190, 30, 30);
         JButton updateSubmitButton=new JButton("submit");
         JButton updateClearButton=new JButton("clear");
+        JButton updateRefreshButton=new JButton("refresh");
 
-        updateTitleLabel.setBounds(50, 60, 450, 30);
-        updateAccountLabel.setBounds(90, 100, 150, 30);
-        updatePasswordLabel.setBounds(90, 130, 150, 30);
-        updateNameLabel.setBounds(90, 160, 150, 30);
-        updateProfileNoLabel.setBounds(90, 190, 150, 30);
+        updateTitleLabel.setBounds(50, 20, 450, 30);
+        updateAccountLabel.setBounds(90, 60, 150, 30);
+        updatePasswordLabel.setBounds(90, 90, 150, 30);
+        updateNameLabel.setBounds(90, 120, 150, 30);
+        updateProfileNoLabel.setBounds(90, 150, 150, 30);
 
-        updateAccountField.setBounds(230, 100, 150, 25);
-        updatePasswordField.setBounds(230, 130, 150, 25);
-        updateNameField.setBounds(230, 160, 150, 25);
-        updateProfileNoField.setBounds(230, 190, 150, 25);
-        updateSubmitButton.setBounds(310, 270, 80, 25);
+        updateAccountField.setBounds(230, 60, 150, 25);
+        updatePasswordField.setBounds(230, 90, 150, 25);
+        updateNameField.setBounds(230, 120, 150, 25);
+        updateProfileNoField.setBounds(230, 150, 150, 25);
 
+
+        updateSubmitButton.setBounds(250, 190, 80, 25);
+        updateClearButton.setBounds(150, 190, 80, 25);
+        updateRefreshButton.setBounds(350, 190, 80, 25);
         updateSubmitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -270,7 +323,7 @@ public class adminPage extends JFrame {
                 }
             }
         });
-        updateClearButton.setBounds(210, 270, 80, 25);
+
         // Clear button
         updateClearButton.addActionListener(new ActionListener() {
             @Override
@@ -279,6 +332,32 @@ public class adminPage extends JFrame {
                 updatePasswordField.setText("");
                 updateNameField.setText("");
                 updateProfileNoField.setText("");
+            }
+        });
+
+        updateRefreshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adminUpdateUserController adminUpdateUserController = new adminUpdateUserController();
+                DefaultTableModel updatedModel = adminUpdateUserController.refreshAllUserList();
+                DefaultTableModel updatedModel2 = adminUpdateUserController.refreshProfileList();
+                //?
+                updateUserModel.setRowCount(0);
+                for (int i = 0; i < updatedModel.getRowCount(); i++) {
+                    Vector<Object> row = new Vector<>();
+                    for (int j = 0; j < updatedModel.getColumnCount(); j++) {
+                        row.add(updatedModel.getValueAt(i, j));
+                    }
+                    updateUserModel.addRow(row);
+                }
+                updateUserProfileModel.setRowCount(0);
+                for (int i = 0; i < updatedModel2.getRowCount(); i++) {
+                    Vector<Object> row = new Vector<>();
+                    for (int j = 0; j < updatedModel2.getColumnCount(); j++) {
+                        row.add(updatedModel2.getValueAt(i, j));
+                    }
+                    updateUserProfileModel.addRow(row);
+                }
             }
         });
 
@@ -297,6 +376,7 @@ public class adminPage extends JFrame {
         suspendTable.setPreferredScrollableViewportSize(new Dimension(400, 500));
         JScrollPane suspendScrollPane = new JScrollPane(suspendTable);
         suspendTable.setRowHeight(20);
+
         JButton suspendRefreshButton=new JButton("refresh");
         //refreshButton.setBounds(210, 10, 80, 25);
         suspendRefreshButton.addActionListener(new ActionListener() {
@@ -580,9 +660,12 @@ public class adminPage extends JFrame {
 
         DefaultTableModel updateProfileModel = adminUpdateController.viewProfileList();
         JTable updateProfileTable = new JTable(updateProfileModel);
-        profileTable.setPreferredScrollableViewportSize(new Dimension(400, 500));
+        updateProfileTable.setPreferredScrollableViewportSize(new Dimension(400, 500));
         JScrollPane updateProfileScrollPane = new JScrollPane(updateProfileTable);
-        profileTable.setRowHeight(20);
+        updateProfileTable.setRowHeight(20);
+
+
+
         JButton updateProfileRefreshButton=new JButton("refresh");
 
         updateProfileScrollPane.setBounds(50, 50, 450, 350);
@@ -596,8 +679,8 @@ public class adminPage extends JFrame {
                     int profileNO = Integer.parseInt(profileNOString);
                     String profileName = updateNameProfileField.getText();
 
-                    adminUpdateProfileController adminUpdateController = new adminUpdateProfileController();
-                    if (adminUpdateController.updateProfile(profileNO,profileName)){
+                    adminUpdateProfileController adminUpdateProfileController = new adminUpdateProfileController();
+                    if (adminUpdateProfileController.updateProfile(profileNO,profileName)){
                         JOptionPane.showMessageDialog(adminPage.this, "the profile Successfully updated");
                     }else {
                         JOptionPane.showMessageDialog(adminPage.this, "The profile number does not exist,\n or the profile name you entered is exist or invalid (greater than four digits).");
@@ -607,7 +690,7 @@ public class adminPage extends JFrame {
                 }
             }
         });
-        updateProfileRefreshButton.addActionListener(new ActionListener() {
+        /*updateProfileRefreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 adminUpdateProfileController adminUpdateProfileController = new adminUpdateProfileController();
@@ -621,7 +704,26 @@ public class adminPage extends JFrame {
                     updateProfileModel.addRow(row);
                 }
             }
+        });*/
+        updateProfileRefreshButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                adminUpdateProfileController adminUpdateProfileController = new adminUpdateProfileController();
+                DefaultTableModel updatedModel = adminUpdateProfileController.refreshProfileList();
+
+                SwingUtilities.invokeLater(() -> {
+                    updateProfileModel.setRowCount(0);
+                    for (int i = 0; i < updatedModel.getRowCount(); i++) {
+                        Vector<Object> row = new Vector<>();
+                        for (int j = 0; j < updatedModel.getColumnCount(); j++) {
+                            row.add(updatedModel.getValueAt(i, j));
+                        }
+                        updateProfileModel.addRow(row);
+                    }
+                });
+            }
         });
+
 
         updateProfileLabel.setBounds(30, 10, 450, 30);
         updateProfileField.setBounds(50, 40, 250, 30);
@@ -833,7 +935,8 @@ public class adminPage extends JFrame {
         addPart.add(addPasswordLabel);
         addPart.add(addNameLabel);
         addPart.add(addProfileNoLabel);
-        addPart.add(questionMarkLabel);
+
+        addPart.add(addUserProfileScrollPane);
 
 
         addPart.add(addAccountField);
@@ -842,6 +945,8 @@ public class adminPage extends JFrame {
         addPart.add(addProfileNoField);
         addPart.add(submitButton);
         addPart.add(clearButton);
+        addPart.add(addRefreshButton);
+
 
 
         searchPart.add(searchAccountLabel);
@@ -855,7 +960,11 @@ public class adminPage extends JFrame {
         updatePart.add(updatePasswordLabel);
         updatePart.add(updateNameLabel);
         updatePart.add(updateProfileNoLabel);
-        updatePart.add(updateQuestionMarkLabel);
+        //updatePart.add(updateQuestionMarkLabel);
+        updatePart.add(updateUserTableScrollPane);
+        updatePart.add(updateUserProfileScrollPane);
+
+
 
         updatePart.add(updateAccountField);
         updatePart.add(updatePasswordField);
@@ -863,6 +972,8 @@ public class adminPage extends JFrame {
         updatePart.add(updateProfileNoField);
         updatePart.add(updateSubmitButton);
         updatePart.add(updateClearButton);
+        updatePart.add(updateRefreshButton);
+
 
 
         suspendPart.add(suspendAccountLabel);

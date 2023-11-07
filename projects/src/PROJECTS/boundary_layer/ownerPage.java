@@ -165,9 +165,9 @@ public class ownerPage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ownerViewController ownerViewController = new ownerViewController();
-/**
- * call view controller
- */
+                /**
+                 * call view controller
+                 */
                 DefaultTableModel updatedModel = ownerViewController.refreshAllSlotList();
                 //?
                 myModel.setRowCount(0);
@@ -294,7 +294,7 @@ public class ownerPage extends JFrame {
 
 
         updateSubmitButton.addActionListener(e -> {
-            int SlotNo = (int)integerField.getValue();;
+            int SlotNo = (int)integerField.getValue();
 
             Date selectedStartTime = (Date) updateStartDateTimeSpinner.getValue();
             Date selectedEndTime = (Date) updateEndDateTimeSpinner.getValue();

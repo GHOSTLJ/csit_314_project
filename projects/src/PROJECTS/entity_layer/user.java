@@ -5,6 +5,7 @@ import PROJECTS.boundary_layer.adminPage;
 
 import PROJECTS.boundary_layer.ownerPage;
 
+import PROJECTS.boundary_layer.staffPage;
 import PROJECTS.control_layer.systemAdmin.*;
 import PROJECTS.util.DButil;
 
@@ -42,7 +43,8 @@ public class user {
                 } else if (resultSet.getInt("t_u_pro_no")==3) {
 
                 } else if (resultSet.getInt("t_u_pro_no")==4) {
-
+                    new staffPage(resultSet.getString("name"),resultSet.getString("accountNo"));
+                    return true;
                 }
             }else {
                 return false;

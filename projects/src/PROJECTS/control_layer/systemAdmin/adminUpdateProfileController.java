@@ -30,6 +30,7 @@ public class adminUpdateProfileController {
         return userProfile.viewProfileFromDatabase();
     }
     public DefaultTableModel refreshProfileList(){
+
         userProfile userProfile = new userProfile();
         return userProfile.viewProfileFromDatabase();
 

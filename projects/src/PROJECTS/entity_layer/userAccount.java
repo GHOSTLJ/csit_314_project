@@ -116,6 +116,14 @@ public class userAccount extends user{
             //if add succeeds count will be 1
             int count = preparedStatement.executeUpdate();
 
+            int profileValue;
+            profileValue = Integer.parseInt(userAddInfo.get("profile"));
+            if (profileValue == 4) {
+                     // Return false if profile value is not within database
+                boolean counts = initWorkingHour(userAddInfo.get("account"));
+            }
+
+
             return count == 1;
 
         } catch (Exception e) {
@@ -300,6 +308,33 @@ public class userAccount extends user{
         try {
             connection = DButil.getConnection();
             String sql = "update t_user_account set status = true where accountNo =?;";
+            preparedStatement = connection.prepareStatement(sql);
+
+            preparedStatement.setString(1, account);
+
+            //if add succeeds count will be 1
+            int count = preparedStatement.executeUpdate();
+
+            return count == 1;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+
+            DButil.clos(connection, preparedStatement, resultSet);
+
+        }
+        return false;
+    }
+
+    public boolean initWorkingHour(String account){
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = DButil.getConnection();
+            String sql = "INSERT INTO t_staff_work_hour ( staff_id, max_hour) VALUES ( ?, 40); ";
             preparedStatement = connection.prepareStatement(sql);
 
             preparedStatement.setString(1, account);

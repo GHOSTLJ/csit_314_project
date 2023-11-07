@@ -3,6 +3,7 @@ package PROJECTS.control_layer.systemAdmin;
 import PROJECTS.entity_layer.userAccount;
 import PROJECTS.entity_layer.userProfile;
 
+import javax.swing.table.DefaultTableModel;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,5 +37,13 @@ public class adminAddUserController {
 
         userAccount userAccount = new userAccount();
         return userAccount.addUserToDatabase(userAddInfo);//connect to entity layer;
+    }
+    public DefaultTableModel viewProfileList(){
+        userProfile userProfile = new userProfile();
+        return userProfile.viewProfileFromDatabase();
+    }
+    public DefaultTableModel refreshProfileList(){
+        userProfile userProfile = new userProfile();
+        return userProfile.viewProfileFromDatabase();
     }
 }

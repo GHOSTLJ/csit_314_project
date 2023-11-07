@@ -1,7 +1,9 @@
 package PROJECTS.control_layer.systemAdmin;
 
 import PROJECTS.entity_layer.userAccount;
+import PROJECTS.entity_layer.userProfile;
 
+import javax.swing.table.DefaultTableModel;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -33,5 +35,24 @@ public class adminUpdateUserController {
         userUpdateInfo.put("profile",profile);
         userAccount userAccount = new userAccount();
         return userAccount.updateUserToDatabase(userUpdateInfo);//connect to entity layer;
+    }
+
+    public DefaultTableModel viewAllUserList(){
+        userAccount userAccount = new userAccount();
+        DefaultTableModel myModel = userAccount.viewFromDatabase();
+        return myModel;
+    }
+    public DefaultTableModel refreshAllUserList(){
+        userAccount userAccount = new userAccount();
+        return userAccount.refreshFromDataBase();
+    }
+
+    public DefaultTableModel viewProfileList(){
+        userProfile userProfile = new userProfile();
+        return userProfile.viewProfileFromDatabase();
+    }
+    public DefaultTableModel refreshProfileList(){
+        userProfile userProfile = new userProfile();
+        return userProfile.viewProfileFromDatabase();
     }
 }
