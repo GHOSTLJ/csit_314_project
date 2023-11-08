@@ -99,11 +99,11 @@ public class staffPage extends JFrame {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
         /**
          *
-         * view assigned bid part  AssignedBid
+         * view assigned slot part  AssignedSlot
          */
-        staffViewAssignedBidController staffViewAssignedBidController = new staffViewAssignedBidController();
+        staffViewAssignedWorkSlotsController staffViewAssignedWorkSlotsController = new staffViewAssignedWorkSlotsController();
 
-        DefaultTableModel ViewAssignedBidModel = staffViewAssignedBidController.viewAssignedBidsList(account);
+        DefaultTableModel ViewAssignedBidModel = staffViewAssignedWorkSlotsController.viewAssignedSlotList(account);
         JTable ViewAssignedBidTable = new JTable(ViewAssignedBidModel);
         ViewAssignedBidTable.setPreferredScrollableViewportSize(new Dimension(520, 380));
         JScrollPane ViewAssignedBidScrollPane = new JScrollPane(ViewAssignedBidTable);
@@ -114,11 +114,11 @@ public class staffPage extends JFrame {
         ViewAssignedBidRefreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                staffViewAssignedBidController staffViewAssignedBidController = new staffViewAssignedBidController();
+                staffViewAssignedWorkSlotsController staffViewAssignedWorkSlotsController = new staffViewAssignedWorkSlotsController();
                 /**
                  * call view controller
                  */
-                DefaultTableModel updatedModel = staffViewAssignedBidController.refreshAssignedBidsList(account);
+                DefaultTableModel updatedModel = staffViewAssignedWorkSlotsController.refreshAssignedSlotList(account);
                 //?
                 ViewAssignedBidModel.setRowCount(0);
                 for (int i = 0; i < updatedModel.getRowCount(); i++) {
@@ -139,7 +139,7 @@ public class staffPage extends JFrame {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
         /**
          *
-         * end of view assigned bid part
+         * end of VIEW assigned slot part
          */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
         /**
@@ -176,7 +176,7 @@ public class staffPage extends JFrame {
 
                 staffIndicateHourController staffIndicateHourController = new staffIndicateHourController();
                 /**
-                 * call search controller
+                 * call Indicate controller
                  */
 
 
@@ -203,13 +203,12 @@ public class staffPage extends JFrame {
         WorkingHourField.setBounds(30, 90, 250, 30);
         WorkingHourButton.setBounds(350, 90, 100, 30);
         WorkingHourScrollPane.setBounds(30, 130, 430, 200);
-        //WorkingHourRefreshButton.setBounds(50, 2000, 450, 280);
 
         IndicateWorkHourPart.add(WorkingHourLabel);
         IndicateWorkHourPart.add(WorkingHourField);
         IndicateWorkHourPart.add(WorkingHourButton);
         IndicateWorkHourPart.add(WorkingHourScrollPane);
-        //IndicateWorkHourPart.add(WorkingHourRefreshButton);
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
         /**
          *
@@ -224,12 +223,12 @@ public class staffPage extends JFrame {
 
         JLabel bidLabel=new JLabel("Please enter enter slot NO and choose role to bid :");
 
-        NumberFormat bidintegerFormat = NumberFormat.getIntegerInstance();
-        NumberFormatter bidformatter = new NumberFormatter(bidintegerFormat);
-        bidformatter.setValueClass(Integer.class);
-        bidformatter.setAllowsInvalid(false);
+        NumberFormat bidIntegerFormat = NumberFormat.getIntegerInstance();
+        NumberFormatter bidFormatter = new NumberFormatter(bidIntegerFormat);
+        bidFormatter.setValueClass(Integer.class);
+        bidFormatter.setAllowsInvalid(false);
 
-        JFormattedTextField bidField = new JFormattedTextField(bidformatter);
+        JFormattedTextField bidField = new JFormattedTextField(bidFormatter);
         bidField.setColumns(10); // Set the desired number of columns
 
 

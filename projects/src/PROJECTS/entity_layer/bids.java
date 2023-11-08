@@ -141,7 +141,7 @@ public class bids {
      * @param account user account
      * @return DefaultTableModel
      */
-    public DefaultTableModel vieAssignedBids(String account){
+    public DefaultTableModel viewAssignedSlotList(String account){
         DefaultTableModel myModel = new DefaultTableModel();
 
         Connection connection = null;
