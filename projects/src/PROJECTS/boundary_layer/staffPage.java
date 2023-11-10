@@ -18,7 +18,7 @@ import java.util.Vector;
 
 public class staffPage extends JFrame {
     public staffPage(String name,String account) {
-        super("welcome "+name +"to"+"use staff page");
+        super("welcome "+ name +" to "+account+" use staff page");
         JTabbedPane controlTab;
         JPanel ViewSlotsPart, ViewAssignedWorkPart, IndicateWorkHourPart,BidSlotPart,ViewMyBidsPart,DeleteMyBids,exitPart;
 

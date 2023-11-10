@@ -123,7 +123,6 @@ public class userAccount extends user{
                 boolean counts = initWorkingHour(userAddInfo.get("account"));
             }
 
-
             return count == 1;
 
         } catch (Exception e) {
@@ -135,49 +134,6 @@ public class userAccount extends user{
     }
 
 
-
-    /**
-     * This method is used by administrators to find users
-     *
-     * @param account account information
-     * @return Returns a Vector containing user information including "Account No", "Password", "Name", "Description","Status"
-     */
-    /*public Vector<String> searchUserFromDatabase(String account){
-        Vector<String> newRowData = new Vector<>();
-
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        ResultSet resultSet = null;
-        try {
-            connection = DButil.getConnection();
-            String sql = "SELECT accountNo, password, name, description,status FROM t_user_account JOIN t_user_profile ON t_user_account.t_u_pro_no = t_user_profile.pro_no where accountNo = ?;";
-            preparedStatement = connection.prepareStatement(sql);
-
-            preparedStatement.setString(1, account);
-            resultSet = preparedStatement.executeQuery();
-
-            // Define column names for the table model
-            String[] columnNames = {"Account", "Password", "Name", "Description","Status"};
-
-            // Iterate through the result set and add data to the table model
-            while (resultSet.next()) {
-                newRowData.addElement(resultSet.getString("accountNo"));
-                newRowData.addElement(resultSet.getString("password"));
-                newRowData.addElement(resultSet.getString("name"));
-                newRowData.addElement(resultSet.getString("description"));
-                newRowData.addElement(resultSet.getBoolean("status")==true?"active":"inactive");
-                return newRowData;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Handle exceptions
-        }finally {
-            DButil.clos(connection,preparedStatement,resultSet);
-        }
-
-        return null;
-    }
-*/
 
     /**
      * This method is used by administrators to find users
@@ -250,6 +206,13 @@ public class userAccount extends user{
             //if add succeeds count will be 1
             int count = preparedStatement.executeUpdate();
 
+            // if change user profile as staff ,then add new record to staff work hour;
+            int profileValue;
+            profileValue = Integer.parseInt(updateAddInfo.get("profile"));
+            if (profileValue == 4) {
+                // Return false if profile value is not within database
+                boolean counts = initWorkingHour(updateAddInfo.get("account"));
+            }
             return count == 1;
 
         } catch (Exception e) {
@@ -325,6 +288,49 @@ public class userAccount extends user{
 
         }
         return false;
+    }
+
+    /**
+     * for manager to view all staff list including max working hours
+     * @return DefaultTableModel "Account",  "Name", "Max working Hour"
+     */
+    public DefaultTableModel viewStaffList() {
+        DefaultTableModel myModel = new DefaultTableModel();
+
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = DButil.getConnection();
+            String sql = "select t_user_account.accountNo,t_user_account.name,t_staff_work_hour.max_hour \n" +
+                    "from t_user_account \n" +
+                    "join t_staff_work_hour \n" +
+                    "on t_user_account.accountNo = t_staff_work_hour.staff_id\n" +
+                    "where t_u_pro_no = 4 and status = true;";
+
+            preparedStatement = connection.prepareStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+
+            // Define column names for the table model
+            String[] columnNames = {"Account",  "Name", "Max working Hour"};
+            myModel.setColumnIdentifiers(columnNames);
+            // Iterate through the result set and add data to the table model
+            while (resultSet.next()) {
+                String accountNo = resultSet.getString("accountNo");
+                String name = resultSet.getString("name");
+                String hour = resultSet.getString("max_hour");
+
+                // Add fetched data to the table model
+                Object[] rowData = {accountNo, name, hour};
+                myModel.addRow(rowData);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            // Handle exceptions
+        }finally {
+            DButil.clos(connection,preparedStatement,resultSet);
+        }
+        return myModel;
     }
 
     public boolean initWorkingHour(String account){

@@ -690,21 +690,7 @@ public class adminPage extends JFrame {
                 }
             }
         });
-        /*updateProfileRefreshButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                adminUpdateProfileController adminUpdateProfileController = new adminUpdateProfileController();
-                DefaultTableModel updatedModel = adminUpdateProfileController.refreshProfileList();
-                updateProfileModel.setRowCount(0);
-                for (int i = 0; i < updatedModel.getRowCount(); i++) {
-                    Vector<Object> row = new Vector<>();
-                    for (int j = 0; j < updatedModel.getColumnCount(); j++) {
-                        row.add(updatedModel.getValueAt(i, j));
-                    }
-                    updateProfileModel.addRow(row);
-                }
-            }
-        });*/
+
         updateProfileRefreshButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

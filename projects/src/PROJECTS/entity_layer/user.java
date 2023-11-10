@@ -3,6 +3,7 @@ package PROJECTS.entity_layer;
 import PROJECTS.boundary_layer.adminPage;
 
 
+import PROJECTS.boundary_layer.managerPage;
 import PROJECTS.boundary_layer.ownerPage;
 
 import PROJECTS.boundary_layer.staffPage;
@@ -41,7 +42,8 @@ public class user {
                     new ownerPage(resultSet.getString("name"));
                     return true;
                 } else if (resultSet.getInt("t_u_pro_no")==3) {
-
+                    new managerPage();
+                    return true;
                 } else if (resultSet.getInt("t_u_pro_no")==4) {
                     new staffPage(resultSet.getString("name"),resultSet.getString("accountNo"));
                     return true;
