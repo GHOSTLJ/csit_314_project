@@ -13,7 +13,7 @@ import java.util.Vector;
 
 public class adminPage extends JFrame {
     public adminPage(String name ) {
-        super("Welcome "+name+" : "+" to use Admin workspace");
+        super("Welcome "+name+" : "+" Admin dashboard");
         JTabbedPane controlTab;
         JPanel viewPart, addPart, searchPart, updatePart, suspendPart, exitPart,activePart;
 
@@ -44,7 +44,7 @@ public class adminPage extends JFrame {
         table.setPreferredScrollableViewportSize(new Dimension(400, 500));
         JScrollPane scrollPane = new JScrollPane(table);
         table.setRowHeight(20);
-        JButton refreshButton=new JButton("refresh");
+        JButton refreshButton=new JButton("Refresh");
         refreshButton.setBounds(210, 10, 80, 25);
         scrollPane.setBounds(50, 50, 450, 350);
         refreshButton.addActionListener(new ActionListener() {
@@ -72,9 +72,9 @@ public class adminPage extends JFrame {
          */
 
         ToolTipManager.sharedInstance().setInitialDelay(100);
-        JLabel addAccountLabel=new JLabel("   Account :");
+        JLabel addAccountLabel=new JLabel("  Username :");
         JLabel addPasswordLabel=new JLabel("Password :");
-        JLabel addNameLabel=new JLabel("       Name :");
+        JLabel addNameLabel=new JLabel("   Full Name :");
         JLabel addProfileNoLabel=new JLabel("Profile No :");
 
         addAccountLabel.setFont(new Font(Font.SANS_SERIF,Font.BOLD,20));
@@ -103,9 +103,9 @@ public class adminPage extends JFrame {
         JTextField addPasswordField=new JTextField(15);
         JTextField addNameField=new JTextField(15);
         JTextField addProfileNoField=new JTextField(15);
-        JButton submitButton=new JButton("submit");
-        JButton clearButton=new JButton("clear");
-        JButton addRefreshButton=new JButton("refresh");
+        JButton submitButton=new JButton("Add");
+        JButton clearButton=new JButton("Clear");
+        JButton addRefreshButton=new JButton("Refresh");
 
 
 
@@ -184,8 +184,8 @@ public class adminPage extends JFrame {
          */
 
         String[][] datas = {};
-        String[] titles = { "Account", "Password","Name","Profile","Status" };
-        JLabel searchAccountLabel=new JLabel("Please enter the account(Support fuzzy query) you want to search :");
+        String[] titles = { "Username", "Password","Name","Profile","Status" };
+        JLabel searchAccountLabel=new JLabel("Please enter the Username you want to search :");
         JTextField searchAccountField=new JTextField(15);
         JButton searchButton=new JButton("Search");
 
@@ -229,10 +229,10 @@ public class adminPage extends JFrame {
          *
          */
 
-        JLabel updateTitleLabel=new JLabel("  Please enter account to update user ");
-        JLabel updateAccountLabel=new JLabel("   Account :");
+        JLabel updateTitleLabel=new JLabel("Please enter Username to update user ");
+        JLabel updateAccountLabel=new JLabel("   Username :");
         JLabel updatePasswordLabel=new JLabel("Password :");
-        JLabel updateNameLabel=new JLabel("       Name :");
+        JLabel updateNameLabel=new JLabel("   Full Name :");
         JLabel updateProfileNoLabel=new JLabel("Profile No :");
 
         /*ImageIcon updateScaledIcon = new ImageIcon(
@@ -277,7 +277,7 @@ public class adminPage extends JFrame {
         JButton updateClearButton=new JButton("clear");
         JButton updateRefreshButton=new JButton("refresh");
 
-        updateTitleLabel.setBounds(50, 20, 450, 30);
+        updateTitleLabel.setBounds(50, 20, 470, 30);
         updateAccountLabel.setBounds(90, 60, 150, 30);
         updatePasswordLabel.setBounds(90, 90, 150, 30);
         updateNameLabel.setBounds(90, 120, 150, 30);
@@ -311,12 +311,12 @@ public class adminPage extends JFrame {
 
                 if (confirmationResult == JOptionPane.OK_OPTION) {
                     if (user.updateVerification(account, password, name, profile)) {
-                        JOptionPane.showMessageDialog(adminPage.this, "The new user has been successfully updated to the database");
+                        JOptionPane.showMessageDialog(adminPage.this, "The user has been successfully updated to the database");
                     } else {
                         JOptionPane.showMessageDialog(adminPage.this,
                                 "Your input is not valid, please re-enter, (account characters must not be less than 4," +
                                         " password must not be less than 6, " +
-                                        "name must not be empty, profile input please follow (1,2,3,4))");
+                                        "name must not be empty, profile input please follow profile list)");
                     }
                 } else {
                     // User clicked Cancel, do nothing or provide appropriate action
@@ -365,7 +365,7 @@ public class adminPage extends JFrame {
          * suspend part
          *
          */
-        JLabel suspendAccountLabel=new JLabel("Please enter the account you want to suspend :");
+        JLabel suspendAccountLabel=new JLabel("Please enter the Username you want to suspend :");
         JTextField suspendAccountField=new JTextField(15);
         JButton suspendButton=new JButton("Suspend");
 
@@ -377,7 +377,7 @@ public class adminPage extends JFrame {
         JScrollPane suspendScrollPane = new JScrollPane(suspendTable);
         suspendTable.setRowHeight(20);
 
-        JButton suspendRefreshButton=new JButton("refresh");
+        JButton suspendRefreshButton=new JButton("Refresh");
         //refreshButton.setBounds(210, 10, 80, 25);
         suspendRefreshButton.addActionListener(new ActionListener() {
             @Override
@@ -435,7 +435,7 @@ public class adminPage extends JFrame {
          * activate user part
          *
          */
-        JLabel activateAccountLabel=new JLabel("Please enter the account you want to activate :");
+        JLabel activateAccountLabel=new JLabel("Please enter the Username you want to activate :");
         JTextField activateAccountField=new JTextField(15);
         JButton activateButton=new JButton("activate");
 
@@ -532,7 +532,7 @@ public class adminPage extends JFrame {
         profileTable.setPreferredScrollableViewportSize(new Dimension(400, 500));
         JScrollPane profileScrollPane = new JScrollPane(profileTable);
         profileTable.setRowHeight(20);
-        JButton profileRefreshButton=new JButton("refresh");
+        JButton profileRefreshButton=new JButton("Refresh");
         profileRefreshButton.setBounds(210, 10, 80, 25);
         profileScrollPane.setBounds(50, 50, 450, 350);
         profileRefreshButton.addActionListener(new ActionListener() {
@@ -607,13 +607,13 @@ public class adminPage extends JFrame {
          * search profile part
          */
 
-        JLabel searchProfileLabel=new JLabel("Please enter the profile(Support fuzzy query) you want to search :");
+        JLabel searchProfileLabel=new JLabel("Please enter the profile you want to search :");
         JTextField searchProfileField=new JTextField(15);
         JButton searchProfileButton=new JButton("Search");
 
 
         String[][] ProfileData = {};
-        String[] ProfileTitles = { "profile no", "profile" };
+        String[] ProfileTitles = { "Profile no", "Profile" };
         DefaultTableModel searchProfileModel = new DefaultTableModel(ProfileData,ProfileTitles);
         JTable searchProfileTable = new JTable(searchProfileModel);
         searchProfileTable.setPreferredScrollableViewportSize(new Dimension(400, 500));
@@ -711,7 +711,7 @@ public class adminPage extends JFrame {
         });
 
 
-        updateProfileLabel.setBounds(30, 10, 450, 30);
+        updateProfileLabel.setBounds(20, 10, 490, 30);
         updateProfileField.setBounds(50, 40, 250, 30);
         updateNameProfileLabel.setBounds(30, 70, 450, 30);
         updateNameProfileField.setBounds(50, 100, 250, 30);

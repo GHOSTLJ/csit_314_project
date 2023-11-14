@@ -34,7 +34,7 @@ public class bids {
             resultSet = preparedStatement.executeQuery();
 
             // Define column names for the table model
-            String[] columnNames = {"Bid ID", "slot_id","start time","end time ","hours", "accountNo","bid_role","bid_status"};
+            String[] columnNames = {"Bid ID", "Slot id","Start time","End time ","Hours", "Username","Role","Status"};
             myModel.setColumnIdentifiers(columnNames);
             // Iterate through the result set and add data to the table model
             while (resultSet.next()) {
@@ -186,7 +186,7 @@ public class bids {
 
             resultSet = preparedStatement.executeQuery();
 
-            String[] columnNames = {"Bid ID", "slot_id","start time","end time ","hours", "accountNo","bid_role","bid_status"};
+            String[] columnNames = {"Bid ID", "Slot id","Start time","End time ","Hours", "Username","Role","Status"};
             myModel.setColumnIdentifiers(columnNames);
 
             while (resultSet.next()) {
@@ -320,7 +320,7 @@ public class bids {
             resultSet = preparedStatement.executeQuery();
 
             // Define column names for the table model
-            String[] columnNames = {"Bid ID", "slot_id","start time","end time ","hours", "accountNo","bid_role","bid_status"};
+            String[] columnNames = {"Bid ID", "Slot id","Start time","End time ","Hours", "Username","Role","Status"};
             myModel.setColumnIdentifiers(columnNames);
             // Iterate through the result set and add data to the table model
             while (resultSet.next()) {
@@ -529,7 +529,7 @@ public class bids {
             resultSet = preparedStatement.executeQuery();
 
             // Define column names for the table model
-            String[] columnNames = {"Bid ID", "slot_id","start time","end time ","hours", "accountNo","bid_role","bid_status"};
+            String[] columnNames = {"Bid ID", "Slot id","Start time","End time ","Hours", "Username","Role","Status"};
             myModel.setColumnIdentifiers(columnNames);
             // Iterate through the result set and add data to the table model
             while (resultSet.next()) {

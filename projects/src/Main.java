@@ -12,25 +12,11 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         //new adminPage("adm");
-        //new staffPage("tom7","staff14");
+        //new staffPage("tom7","staff10");
         //new managerPage();
-
-        /*User user = null;
-        //s
-        //sstest
-
-        user.UserLogin();*/
-        new loginPage();//main entry
         //new ownerPage("22");
 
-        //managerOfferWorkController managerOfferWorkController = new managerOfferWorkController();
-        //managerOfferWorkController.offerWork(1,"staff1","waiter");
-        /*workSlots workSlots = new workSlots();
-        workSlots.updateRoleRegistered(2,"chef");*/
-
-        //managerOfferWorkController.offerWork(1,"staff5","chef");
-        /*bids bids = new bids();
-        bids.getBidInformation(3);*/
+        new loginPage();//main entry
 
     }
 }

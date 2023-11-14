@@ -15,7 +15,7 @@ import java.util.Vector;
 
 public class managerPage extends JFrame {
     public managerPage(){
-        super("welcome "+"to"+"use manager page");
+        super("welcome use manager page");
         JTabbedPane controlTab;
         JPanel ViewAllSlotsPart, ViewStaffListPart,ViewAllBidsPart,ViewNotFullSlotsPart, OfferWorkSlotPart,HandleBidsPart,exitPart;
 
@@ -240,9 +240,9 @@ public class managerPage extends JFrame {
          * view offer work part
          */
 
-        JLabel offerWorkTitleLabel=new JLabel("  Please enter Slot NO and Account to offer work to the staff ");
+        JLabel offerWorkTitleLabel=new JLabel("  Please enter Slot NO and Username to offer work to the staff ");
         JLabel offerWorkSlotNOLabel=new JLabel("  Slot NO :");
-        JLabel offerWorkStaffNOLabel=new JLabel("  Account :");
+        JLabel offerWorkStaffNOLabel=new JLabel("  Username :");
         JLabel offerWorkRoleLabel=new JLabel("   Role :");
         offerWorkTitleLabel.setFont(new Font(Font.SANS_SERIF,Font.BOLD,18));
         offerWorkSlotNOLabel.setFont(new Font(Font.SANS_SERIF,Font.BOLD,15));
@@ -380,7 +380,7 @@ public class managerPage extends JFrame {
          * Handle Bids Part handleBids
          */
 
-        JLabel handleBidsLabel=new JLabel("Please enter enter bid NO approve or reject :");
+        JLabel handleBidsLabel=new JLabel("Please enter enter Bid id approve or reject :");
 
         NumberFormat handleBidsIntegerFormat = NumberFormat.getIntegerInstance();
         NumberFormatter handleBidsFormatter = new NumberFormatter(handleBidsIntegerFormat);

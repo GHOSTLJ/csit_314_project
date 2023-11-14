@@ -16,7 +16,7 @@ import java.util.*;
 
 public class ownerPage extends JFrame {
     public ownerPage(String name) {
-        super("Welcome "+name+" : "+" to use cafe owner workspace");
+        super("Welcome  "+name+": cafe owner dashboard");
         JTabbedPane controlTab;
         JPanel viewPart, addPart, searchPart,updatePart,deletePart,exitPart;	//定义面板
 

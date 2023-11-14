@@ -36,7 +36,7 @@ public class loginPage {
         JPanel titlePanel =new JPanel();//创建一个放置标题的面板
         titlePanel.setLayout(new FlowLayout());
 
-        titlePanel.add(new JLabel("Welcome To Use Staff Management System"));
+        titlePanel.add(new JLabel("Welcome To Cafe Staff Management System"));
         c.add(titlePanel, "North");//加入视图中
 
         //        输入框——中间 //Input box -- middle

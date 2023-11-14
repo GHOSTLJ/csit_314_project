@@ -18,7 +18,7 @@ import java.util.Vector;
 
 public class staffPage extends JFrame {
     public staffPage(String name,String account) {
-        super("welcome "+ name +" to "+account+" use staff page");
+        super("welcome use staff page");
         JTabbedPane controlTab;
         JPanel ViewSlotsPart, ViewAssignedWorkPart, IndicateWorkHourPart,BidSlotPart,ViewMyBidsPart,DeleteMyBids,exitPart;
 
@@ -358,7 +358,7 @@ public class staffPage extends JFrame {
          * delete Part
          */
 
-        JLabel deleteLabel=new JLabel("Please enter Bid NO to delete :");
+        JLabel deleteLabel=new JLabel("Please enter Bid ID to delete :");
 
         NumberFormat deleteFormat = NumberFormat.getIntegerInstance();
         NumberFormatter deleteFormatter = new NumberFormatter(deleteFormat);

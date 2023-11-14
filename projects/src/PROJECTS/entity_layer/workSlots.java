@@ -61,7 +61,7 @@ public class workSlots {
             resultSet = preparedStatement.executeQuery();
 
             // Define column names for the table model
-            String[] columnNames = {"Slot No", "start time", "end time", "hours","chef need","cashier need","waiter need","chef reg","cashier reg","waiter reg"};
+            String[] columnNames = {"Slot No", "Start time", "End time", "Hours","Chef need","Cashier need","Waiter need","Chef reg","Cashier reg","Waiter reg"};
             myModel.setColumnIdentifiers(columnNames);
             // Iterate through the result set and add data to the table model
             while (resultSet.next()) {
@@ -223,7 +223,7 @@ public class workSlots {
             resultSet = preparedStatement.executeQuery();
 
             // Define column names for the table model
-            String[] columnNames = {"Slot No", "start time", "end time", "hours","chef need","cashier need","waiter need"};
+            String[] columnNames = {"Slot No", "Start time", "End time", "Hours","Chef need","Cashier need","Waiter need"};
             myModel.setColumnIdentifiers(columnNames);
             // Iterate through the result set and add data to the table model
             while (resultSet.next()) {
@@ -263,7 +263,7 @@ public class workSlots {
             resultSet = preparedStatement.executeQuery();
 
             // Define column names for the table model
-            String[] columnNames = {"Slot No", "start time", "end time", "hours","chef need","cashier need","waiter need","chef reg","cashier reg","waiter reg"};
+            String[] columnNames = {"Slot No", "Start time", "End time", "Hours","Chef need","Cashier need","Waiter need","Chef reg","Cashier reg","Waiter reg"};
             myModel.setColumnIdentifiers(columnNames);
             // Iterate through the result set and add data to the table model
             while (resultSet.next()) {

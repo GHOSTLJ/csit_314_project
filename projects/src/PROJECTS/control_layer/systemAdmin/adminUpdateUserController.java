@@ -16,16 +16,6 @@ public class adminUpdateUserController {
             return false; // Return false if any of the conditions are not met
         }
 
-        // Check profile value (1, 2, 3, or 4)
-        int profileValue;
-        try {
-            profileValue = Integer.parseInt(profile);
-            if (profileValue < 1 || profileValue > 4) {
-                return false; // Return false if profile value is not within the allowed range
-            }
-        } catch (NumberFormatException e) {
-            return false; // Return false if profile is not a valid integer
-        }
 
         // If all conditions are met, return true
         Map<String, String> userUpdateInfo = new HashMap<>();

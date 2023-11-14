@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.util.Map;
 import java.util.Vector;
 
-public class userAccount extends user{
+public class userAccount {
 
     /**
      * This method is suitable for the administrator workSpace,
@@ -29,7 +29,7 @@ public class userAccount extends user{
             resultSet = preparedStatement.executeQuery();
 
             // Define column names for the table model
-            String[] columnNames = {"Account", "Password", "Name", "Profile","Status"};
+            String[] columnNames = {"Username", "Password", "Name", "Profile","Status"};
             myModel.setColumnIdentifiers(columnNames);
             // Iterate through the result set and add data to the table model
             while (resultSet.next()) {
@@ -69,7 +69,7 @@ public class userAccount extends user{
             resultSet = preparedStatement.executeQuery();
 
             // Define column names for the table model
-            String[] columnNames = {"Account", "Password", "Name", "Description","Status"};
+            String[] columnNames = {"Username", "Password", "Name", "Description","Status"};
             myModel.setColumnIdentifiers(columnNames);
             // Iterate through the result set and add data to the table model
             while (resultSet.next()) {
@@ -154,7 +154,7 @@ public class userAccount extends user{
             resultSet = preparedStatement.executeQuery();
 
             // Define column names for the table model
-            String[] columnNames = {"Account", "Password", "Name", "Description","Status"};
+            String[] columnNames = {"Username", "Password", "Name", "Description","Status"};
             myModel.setColumnIdentifiers(columnNames);
             // Iterate through the result set and add data to the table model
             while (resultSet.next()) {
@@ -312,7 +312,7 @@ public class userAccount extends user{
             resultSet = preparedStatement.executeQuery();
 
             // Define column names for the table model
-            String[] columnNames = {"Account",  "Name", "Max working Hour"};
+            String[] columnNames = {"Username",  "Name", "Max working Hour"};
             myModel.setColumnIdentifiers(columnNames);
             // Iterate through the result set and add data to the table model
             while (resultSet.next()) {

@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 public class managerViewAllWorkSlotsController {
     public DefaultTableModel viewAllSlotList(){
         workSlots workSlots = new workSlots();
+
         return workSlots.viewSlotFromDatabase();
 
     }
